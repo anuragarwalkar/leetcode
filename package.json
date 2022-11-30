@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/anuragarwalkar/leetcode/issues"
   },
-  "homepage": "https://github.com/anuragarwalkar/leetcode#readme"
+  "homepage": "https://github.com/anuragarwalkar/leetcode#readme",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
