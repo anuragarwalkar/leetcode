@@ -10,4 +10,5 @@ function decimalToBinary(decimalNumber) {
     return binary.join('');
 }
 
-console.log(decimalToBinary(1600));
+console.log(decimalToBinary(22));
+console.log(decimalToBinary(23));
