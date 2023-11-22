@@ -10,18 +10,18 @@ const node = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new
  * @param {ListNode} head
  * @return {ListNode}
  */
-// var reverseList = function(head) {
-//     let tail = null;
+var reverseList = function(head) {
+    let tail = null;
 
-//     while(head) {
-//         const temp = head.next;
-//         head.next = tail;
-//         tail = head;
-//         head = temp;
-//     }
+    while(head) {
+        const temp = head.next;
+        head.next = tail;
+        tail = head;
+        head = temp;
+    }
 
-//     return tail;
-// };
+    return tail;
+};
 
 // Time complexity: O(n)
 // Space complexity: O(n)
