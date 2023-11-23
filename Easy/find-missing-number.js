@@ -12,21 +12,46 @@ var missingNumber = function(nums) {
 var missingNumber = function(nums) {
     let actualXor = 0;
 
-    const numsXor = nums.reduce((acc, curr) => acc ^ curr);
+    const total = nums.reduce((acc, curr) => acc ^ curr);
 
     for(let i = 0; i <= nums.length; i++) {
         actualXor = actualXor ^ i;
     }
 
-    return actualXor ^ numsXor;
+    return actualXor ^ total;
 };
 
 var missingNumber = function(nums) {
-    let sum = 0 
+    let sum = nums.length;
+
     for(let i = 0; i<nums.length; i++) {
-        sum+=i+1-nums[i]
+        sum+= i-nums[i]
     }
     return sum 
 }
+
+var missingNumber = function(nums) {
+    let sum = nums.length;
+
+    for(let i = 0; i<nums.length; i++) {
+        sum+= i-nums[i]
+    }
+    return sum 
+}
+
+var missingNumber = function(nums) {
+    let output = 0;
+
+   for(let i = 0; i < nums.length; i++) {
+    output ^= nums[i] ^ i + 1
+   }
+
+   return output;
+}
+
+
+
+console.log(missingNumber([0, 1, 2]));
+
 
 console.log(missingNumber([0, 1, 2]))
