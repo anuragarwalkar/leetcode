@@ -37,3 +37,45 @@ function solve(array) {
 const result = solve([7, 1, 2, 3, 9]);
 
 console.log("result:", result);
+
+
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function(height) {
+  let maxArea = 0;
+
+  for(let i = 0; i < height.length; i++){
+      for(let j = i + 1; j < height.length; j++) {
+          let minHeight = height[i] < height[j] ? height[i] : height[j];
+          let width = j - i;
+          maxArea = Math.max(maxArea, minHeight * width); 
+      }
+  }
+  return maxArea;
+};
+
+var maxArea = function(height) {
+  let maxArea = 0;
+  let start = 0;
+  let end = height.length - 1;
+
+  while(start < end) {
+      const minHeight = height[start] < height[end] ?  height[start] : height[end];
+
+      maxArea = Math.max(maxArea, (end - start) * minHeight);
+
+      if(height[start] < height[end]) {
+          start++;
+      }else {
+          end--;
+      }
+  }
+
+  return maxArea;
+};
+
+
+// console.log(maxArea([1,8,6,2,5,4,8,3,7]));
+console.log(maxArea([1,1]));
