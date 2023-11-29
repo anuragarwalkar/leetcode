@@ -31,8 +31,12 @@ var threeSum = function (nums) {
  */
 var threeSum = function (nums) {
     const result = [];
+    const numbersMap = {};
+    const combinationUsed = {};
 
-    nums.sort((a, b) => a - b);
+    for(let i = 0; i < nums.length ; i++) {
+        numbersMap[nums[i]] = i;
+    }
 
    for(let i = 0; i < nums.length; i++) {
 
@@ -41,30 +45,39 @@ var threeSum = function (nums) {
     }
 
     let start = i + 1;
-    let end = nums.length - 1;
+    let end = nums.length;
+    let required;
 
-    while(start < end) {
-        const total = nums[i] + nums[start] + nums[end];
-
-        if(total > 0) {
-            end--;
-        }else if(total < 0) {
-            start++;
-        }else{
-            result.push([nums[i], nums[start], nums[end]]);
-            end--;
-            while(nums[end] === nums[end - 1] && start < end) {
-                end--;
-            }
-        }
+    if(nums[i] > 0) {
+        required = nums[i] * -1;
+    }else {
+        required = Math.abs(nums[i]);
     }
+    let missing
+    while(start < end) {
+        if(missing === (required - nums[start]) || nums[start] === missing) {
+            start++;
+            continue;
+        }
+
+        missing =  required - nums[start];
+        const threeValues = [nums[i], nums[start], missing];
+        const isZero = threeValues.reduce((a, b) => a + b, 0) === 0;
+
+        console.log('isZero:', isZero);
+
+        if(numbersMap[missing] != null && numbersMap[missing] !== start && i !== numbersMap[missing] && !combinationUsed[i]) {
+            combinationUsed[i] = true;
+            result.push([nums[i], nums[start], missing]);
+        }
+        
+        start++;
+    }
+
      
    }
-
     return result;
 };
-
-
 
 console.log(threeSum([-1,0,1,2,-1,-4]))
 console.log(threeSum([0, 0, 0, 0]));
