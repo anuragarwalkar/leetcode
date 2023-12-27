@@ -12,6 +12,11 @@ const treeNode = new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5
  * @return {number[][]}
  */
 var levelOrder = function(root) {
+    if(!root) {
+        return [];
+    }
+
+    // Using array as a Queue Data Structure we can use here a actual Queue in order to improve performance
     const nodes = [root];
     const result = [];
 
@@ -21,8 +26,8 @@ var levelOrder = function(root) {
         
         for(let i = 0; i < len; i++) {
             let node = nodes.shift();
-            node.left && nodes.push(node.left);
-            node.right && nodes.push(node.right);
+            node?.left && nodes.push(node.left);
+            node?.right && nodes.push(node.right);
             currentLevel.push(node?.val);
         }
 
