@@ -14,13 +14,13 @@ var reverseList = function(head) {
     let tail = null;
 
     while(head) {
-        const temp = head.next;
+        const next = head.next;
         head.next = tail;
-        tail = head;
-        head = temp;
+        tail = next;
+        head = next;
     }
 
-    return tail;
+    return head;
 };
 
 // Time complexity: O(n)
