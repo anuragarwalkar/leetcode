@@ -8,14 +8,14 @@ function convertArrayToTreeNode(inputArray) {
     
     for(let i = 0; i < inputArray.length; i++) {
         const item = inputArray[i];
-        nodes[i] = item ? new TreeNode(item) : null;
+        nodes[i] = item != null ? new TreeNode(item) : null;
     }
 
     for(let i = 0; i < inputArray.length; i++) {
       const leftChildIndex = 2 * i + 1;
       const rightChildIndex = 2 * i + 2;
 
-      if(nodes[i]) {
+      if(nodes[i] != null) {
           nodes[i].left = nodes[leftChildIndex]
           nodes[i].right = nodes[rightChildIndex]
       }
