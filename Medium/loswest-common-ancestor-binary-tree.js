@@ -3,26 +3,22 @@ function TreeNode(val) {
     this.left = this.right = null;
 }
 
-function convertArrayToTreeNode(inputArray) {
-    let nodes = {};
+/**
+ * @param {number[]} preorder
+ * @param {number[]} inorder
+ * @return {TreeNode}
+ */
+var convertArrayToTreeNode = function (nodes, index = 0) {
+   if(index > nodes.length || !nodes[index]) {
+        return null;
+   }
+
+    const root = new TreeNode(nodes[index]);
+    root.left = convertArrayToTreeNode(nodes, Math.floor(2 * index + 1));
+    root.right = convertArrayToTreeNode(nodes, Math.floor(2 * index + 2));
     
-    for(let i = 0; i < inputArray.length; i++) {
-        const item = inputArray[i];
-        nodes[i] = item != null ? new TreeNode(item) : null;
-    }
-
-    for(let i = 0; i < inputArray.length; i++) {
-      const leftChildIndex = 2 * i + 1;
-      const rightChildIndex = 2 * i + 2;
-
-      if(nodes[i] != null) {
-          nodes[i].left = nodes[leftChildIndex]
-          nodes[i].right = nodes[rightChildIndex]
-      }
-    }
-
-    return nodes[0]
-}
+    return root;
+};
 
 /**
  * @param {TreeNode} root
