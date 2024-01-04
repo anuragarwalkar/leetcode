@@ -66,4 +66,46 @@ var connect = function(root) {
     return root;
 };
 
+/**
+ * // Definition for a Node.
+ * function Node(val, left, right, next) {
+ *    this.val = val === undefined ? null : val;
+ *    this.left = left === undefined ? null : left;
+ *    this.right = right === undefined ? null : right;
+ *    this.next = next === undefined ? null : next;
+ * };
+ */
+
+/**
+ * @param {Node} root
+ * @return {Node}
+ */
+var connect = function(root) {
+    if(!root) {
+        return null;
+    }
+    
+    let current = root;
+    let next = current?.left;
+
+    while(current && next) {
+        current.left.next = current.right;
+
+        if(current.next) {
+            current.right.next = current.next.left;
+        }
+
+        current = current.next;
+
+        if(!current) {
+            current = next;
+            next = current.left;
+        }
+    }
+
+    return root;
+};
+
+// console.log(connect(convertArrayToTreeNode([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])))
+
 console.log(connect(convertArrayToTreeNode([1,2,3,4,5,6,7])))
