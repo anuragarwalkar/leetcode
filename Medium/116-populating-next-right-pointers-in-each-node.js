@@ -10,7 +10,7 @@ function TreeNode(val, left, right) {
  * @return {TreeNode}
  */
 var convertArrayToTreeNode = function (nodes, index = 0) {
-   if(index > nodes.length || !nodes[index]) {
+   if(index > nodes.length || nodes[index] == null) {
         return null;
    }
 
