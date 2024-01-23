@@ -1,34 +1,24 @@
 class MinBinaryHeap {
-    
     constructor() {
         this.values = [];
     }
 
-    size() {
-        return this.values.length;
-    }
-
-    front() {
-        return this.values[0];
-    }
-
     enqueue(value) {
         this.values.push(value);
-
         this._bubbleUp();
     }
 
     _bubbleUp() {
         let index = this.values.length - 1;
-        let element = this.values[index];
-        
+        let value = this.values[index];
+
         while(index > 0) {
-            let parentIndex = Math.floor((index - 1) / 2)
+            let parentIndex = Math.floor((index - 1) / 2);
             let parent = this.values[parentIndex];
 
-            if(parent <= element) break;
+            if(value >= parent) break;
 
-            this.values[parentIndex] = element;
+            this.values[parentIndex] = value;
             this.values[index] = parent;
 
             index = parentIndex;
@@ -36,53 +26,61 @@ class MinBinaryHeap {
     }
 
     dequeue() {
-       const min = this.values[0];
-       this.values[0] = this.values.pop();
+        if(!this.values.length) {
+            return null;
+        }
+
+        let min = this.values[0];
+        const lastValue = this.values.pop();
+
+        if(!this.values.length) {
+            return min;
+        }
+        
+        this.values[0] = lastValue;
         this._bubbleDown();
-       return min;
+        return min;
     }
 
     _bubbleDown() {
-       let index = 0; 
+        let index = 0;
+        let value = this.values[index];
 
-       while(index < this.values.length) {
-        let leftChildIndex = Math.floor(2 * index + 1);
-        let rightChildIndex = Math.floor(2 * index + 2);
-        let rightChild = this.values[rightChildIndex];
-        let leftChild = this.values[leftChildIndex];
+        while(index < this.values.length) {
+            let leftChildIndex = (index * 2) + 1;
+            let rightChildIndex = (index * 2) + 2;
+            let leftChild = this.values[leftChildIndex];
+            let rightChild = this.values[rightChildIndex];
 
-        let swap = index;
+            if(value > leftChild && leftChild < rightChild) {
+                this.values[leftChildIndex] = value;
+                this.values[index] = leftChild
+                index = leftChildIndex;
+            }else if(value > rightChild && rightChild < leftChild) {
+                this.values[rightChildIndex] = value;
+                this.values[rightChildIndex] = value;
+                this.values[index] = rightChild;
+                index = rightChildIndex;
+            }else {
+                break
+            }
 
-        if(rightChildIndex < this.values.length && rightChild < this.values[swap]) {
-            swap = rightChildIndex;
         }
-        
-        if(leftChildIndex < this.values.length && leftChild < this.values[swap]) {
-            swap = leftChildIndex;
-        }
-
-        if(swap === index) {
-            break
-        }else {
-            [this.values[index], this.values[swap]] = [this.values[swap], this.values[index]]
-            index = swap;
-        }
-       }
     }
+
 }
 
-var findKthLargest = function(nums, k) {
-    const minHeap = new MinBinaryHeap();
+const instance = new MinBinaryHeap();
 
-    for(let num of nums) {
-        minHeap.enqueue(num);
+instance.enqueue(100);
+instance.enqueue(10);
+instance.enqueue(200);
+instance.enqueue(500);
 
-        if (minHeap.size() > k) {
-        minHeap.dequeue();
-        }
-    }
 
-    return minHeap.front();
-};
+instance.dequeue();
+instance.dequeue();
+instance.dequeue();
+instance.dequeue();
 
-console.log(findKthLargest([3,2,1,5,6,4], 2))
+console.log('instance:', instance.values);
