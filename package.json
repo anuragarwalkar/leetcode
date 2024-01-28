@@ -18,5 +18,8 @@
   "homepage": "https://github.com/anuragarwalkar/leetcode#readme",
   "devDependencies": {
     "sass": "^1.57.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
