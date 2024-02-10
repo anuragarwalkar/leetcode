@@ -1,22 +1,4 @@
-function ListNode(val) {
-    this.val = val;
-    this.next = null;
-}
-
-/**
- * @param {number[]} nodes
- * @return {ListNode}
- */
-var convertArrayToLinkList = function (nodes) {
-    let result = new ListNode(nodes[0]);
-    let tail = result;
-    for(let i = 1; i < nodes.length; i++) {
-     tail.next = new ListNode(nodes[i]);
-     tail = tail.next;
-    }
- 
-    return result;
-};
+import { convertArrayToLinkList } from "../utils";
 
 /**
  * @param {ListNode} head

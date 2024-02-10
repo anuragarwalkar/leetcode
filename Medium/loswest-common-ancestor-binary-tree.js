@@ -1,24 +1,9 @@
+import { convertArrayToTreeNode } from "../utils";
+
 function TreeNode(val) {
     this.val = val;
     this.left = this.right = null;
 }
-
-/**
- * @param {number[]} preorder
- * @param {number[]} inorder
- * @return {TreeNode}
- */
-var convertArrayToTreeNode = function (nodes, index = 0) {
-   if(index > nodes.length || nodes[index] == null) {
-        return null;
-   }
-
-    const root = new TreeNode(nodes[index]);
-    root.left = convertArrayToTreeNode(nodes, Math.floor(2 * index + 1));
-    root.right = convertArrayToTreeNode(nodes, Math.floor(2 * index + 2));
-    
-    return root;
-};
 
 /**
  * @param {TreeNode} root

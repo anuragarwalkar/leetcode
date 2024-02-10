@@ -1,27 +1,3 @@
-
-function TreeNode(val, next) {
-    this.val = val;
-    this.left = this.right = null;
-    this.next = next === undefined ? null : next;
-}
-
-/**
- * @param {number[]} preorder
- * @param {number[]} inorder
- * @return {TreeNode}
- */
-var convertArrayToTreeNode = function (nodes, index = 0) {
-    if(index > nodes.length || nodes[index] == null) {
-         return null;
-    }
- 
-     const root = new TreeNode(nodes[index]);
-     root.left = convertArrayToTreeNode(nodes, Math.floor(2 * index + 1));
-     root.right = convertArrayToTreeNode(nodes, Math.floor(2 * index + 2));
-     
-     return root;
-};
-
 // /**
 //  * @param {TreeNode} root
 //  * @return {void} Do not return anything, modify root in-place instead.
