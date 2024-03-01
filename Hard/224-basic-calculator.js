@@ -23,6 +23,7 @@ function calculate(s) {
             result += stack.pop();  // pop the result outside the brackets
         }
     }
+    result
     return result + sign * num;
 }
 
