@@ -1,6 +1,6 @@
-export function ListNode(val) {
+export function ListNode(val, next) {
     this.val = val;
-    this.next = null;
+    this.next = next;
 }
 
 /**
