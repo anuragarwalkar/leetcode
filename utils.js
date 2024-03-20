@@ -71,3 +71,21 @@ export function convertArrayToUndirectedGraph(graphList) {
 
   return map[1];
 }
+
+function arrayToGraph(arr) {
+    let nodes = {};
+    for (let i = 0; i < arr.length; i++) {
+        let val = i + 1;
+        if (!nodes[val]) {
+            nodes[val] = new Node(val);
+        }
+        for (let j = 0; j < arr[i].length; j++) {
+            let neighborVal = arr[i][j];
+            if (!nodes[neighborVal]) {
+                nodes[neighborVal] = new Node(neighborVal);
+            }
+            nodes[val].neighbors.push(nodes[neighborVal]);
+        }
+    }
+    return nodes[1];
+}
